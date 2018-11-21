@@ -21,7 +21,7 @@ namespace AssemblyRover
             return PathBuilder.ToString();
         }
 
-        public void GoToCoordinate(Coordinate TargetCoordinate)
+        public bool GoToCoordinate(Coordinate TargetCoordinate)
         {
             while (!Coordinate.Equals(TargetCoordinate))
             {
@@ -30,7 +30,7 @@ namespace AssemblyRover
                     Coordinate.X++;
                     AddToPath(RoverAction.MoveEast);
                 }
-                if (Coordinate.X > TargetCoordinate.X)
+                else if (Coordinate.X > TargetCoordinate.X)
                 {
                     Coordinate.X--;
                     AddToPath(RoverAction.MoveWest);
@@ -40,7 +40,7 @@ namespace AssemblyRover
                     Coordinate.Y++;
                     AddToPath(RoverAction.MoveNorth);
                 }
-                if (Coordinate.Y > TargetCoordinate.Y)
+                else if (Coordinate.Y > TargetCoordinate.Y)
                 {
                     Coordinate.Y--;
                     AddToPath(RoverAction.MoveSouth);
@@ -48,6 +48,7 @@ namespace AssemblyRover
             }
             AddToPath(RoverAction.PickComponent);
             PickupCoordinates.Add(TargetCoordinate);
+            return true;
         }
 
         private void AddToPath(RoverAction action)

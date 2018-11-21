@@ -16,13 +16,13 @@ namespace AssemblyRover
             Rover = _Rover;
         }
 
-        public void StartRover()
-        {
-            foreach (Component component in ComponentList)
-            {
-                Rover.GoToCoordinate(component.Coordinate);
-            }
-        }
+        //public void StartRover()
+        //{
+        //    foreach (Component component in ComponentList)
+        //    {
+        //        Rover.GoToCoordinate(component.Coordinate);
+        //    }
+        //}
 
         public static GridBuilder Builder()
         {

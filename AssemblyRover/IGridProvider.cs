@@ -1,6 +1,6 @@
 ﻿namespace AssemblyRover
 {
-    interface IGridProvider
+    public interface IGridProvider
     {
         Grid GetGridFromInputs();
     }

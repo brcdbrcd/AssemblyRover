@@ -82,7 +82,9 @@ namespace AssemblyRover.Tests
                     .WithRover(new Rover(new Coordinate(1, 0)))
                     .Build();
 
-            grid.StartRover();
+            IPickUpEngine pickUpEngine = new PickUpEngine();
+            pickUpEngine.PickUpComponents(grid);
+            // grid.StartRover();
             for (int i = 0; i < grid.ComponentList.Count; i++)
             {
                 grid.ComponentList[i].Coordinate.Should().Equals(grid.Rover.PickupCoordinates[i]);
@@ -103,8 +105,26 @@ namespace AssemblyRover.Tests
                     .WithRover(new Rover(new Coordinate(4, 6)))
                     .Build();
 
-            grid.StartRover();
+            IPickUpEngine pickUpEngine = new PickUpEngine();
+            pickUpEngine.PickUpComponents(grid);
+            // grid.StartRover();
             grid.Rover.GetPath().Should().Equals("ESSPENNPWSWSWSWSWSPWNNNNNPESESESESEP");
+        }
+
+        [Fact]
+        public void WhenRoverPicksComponentsShouldReturnTrue()
+        {
+            Grid.GridBuilder builder = Grid.Builder();
+            Grid grid = builder.WithSize(2)
+                    .WithComponentCount(2)
+                    .AddComponent(new Component(new Coordinate(1, 1)))
+                    .AddComponent(new Component(new Coordinate(0, 0)))
+                    .WithRover(new Rover(new Coordinate(1, 0)))
+                    .Build();
+
+            IPickUpEngine pickUpEngine = new PickUpEngine();
+            bool result = pickUpEngine.PickUpComponents(grid);
+            result.Should().Equals(true);
         }
     }
 }

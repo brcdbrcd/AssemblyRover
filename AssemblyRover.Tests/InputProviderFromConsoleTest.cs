@@ -73,7 +73,7 @@ namespace AssemblyRover.Tests
             ShouldCheckValidGrid(grid);
         }
 
-        private static void ShouldCheckValidGrid(Grid grid)
+        private void ShouldCheckValidGrid(Grid grid)
         {
             grid.Should().NotBeNull();
             grid.Size.Should().Equals(2);

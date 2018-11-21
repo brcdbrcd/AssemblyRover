@@ -11,13 +11,22 @@
             Y = _Y;
         }
 
-        public bool Equals(Coordinate CoordinateToCompare)
+        public override bool Equals(object CoordinateToCompare)
         {
-            if (X == CoordinateToCompare.X && Y == CoordinateToCompare.Y)
+            Coordinate TargetCoordinate = (Coordinate)CoordinateToCompare;
+            if (X == TargetCoordinate.X && Y == TargetCoordinate.Y)
             {
                 return true;
             }
             return false;
+        }
+
+        public override int GetHashCode()
+        {
+            int hash = 13;
+            hash = (hash * 7) + X.GetHashCode();
+            hash = (hash * 7) + Y.GetHashCode();
+            return hash;
         }
     }
 }

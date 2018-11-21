@@ -49,5 +49,14 @@ namespace AssemblyRover.Tests
             rover.GoToCoordinate(target);
             rover.GetPath().Should().Equals("SP");
         }
+
+        [Fact]
+        public void WhenRoverArrivesTargetShouldReturnTrue()
+        {
+            Rover rover = new Rover(new Coordinate(1, 1));
+            Coordinate target = new Coordinate(2, 1);
+            bool result = rover.GoToCoordinate(target);
+            result.Should().Equals(true);
+        }
     }
 }
